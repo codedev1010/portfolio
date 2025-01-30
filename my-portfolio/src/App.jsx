@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
-import { About } from "./components/about";
+import { About } from "./components/About";
 import { Skills } from "./components/Skills";
 import { LeetCode } from "./components/LeetCode";
 import { Projects } from "./components/Projects";
