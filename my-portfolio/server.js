@@ -56,5 +56,7 @@ app.get("/api/leetcode/:username", async (req, res) => {
   }
 });
 
-// Use ES module export
-export default app;
+// Export the express app as a Vercel serverless function
+export default (req, res) => {
+  app(req, res);  // Handle the incoming request using express
+};
