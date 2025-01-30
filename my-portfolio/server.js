@@ -56,7 +56,5 @@ app.get("/api/leetcode/:username", async (req, res) => {
   }
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export the app for serverless function
+module.exports = app;
