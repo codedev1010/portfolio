@@ -4,7 +4,7 @@ import CircularProgress from './CircularProgress';
 
 const fetchLeetCodeData = async (username) => {
   const [profileResponse] = await Promise.all([
-    fetch(`http://localhost:3001/api/leetcode/${username}`)
+    fetch(`http://localhost:3000/api/leetcode/${username}`)
   ]);
 
   if (!profileResponse.ok) {
