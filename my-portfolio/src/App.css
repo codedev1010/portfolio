@@ -1,0 +1,123 @@
+:root {
+  --primary-color: #000000;
+  --secondary-color: #f5f5f5;
+  --accent-color: #ffffff;
+  --text-color: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  position: relative; /* Needed for positioning the rocket */
+}
+
+.left-section {
+  background: url("/night.jpeg") no-repeat center center;
+  background-size: cover;
+  padding: 2rem;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+  color: white;
+  z-index: 1; /* Ensure left section stays behind the rocket */
+}
+
+.right-section {
+  background-color: var(--primary-color);
+  background: url("/night.jpeg") no-repeat center center;
+  background-size: cover;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2; /* Ensure right section stays behind the rocket */
+}
+
+.logo {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.image-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.rocket {
+  position: absolute;
+  left: 10; /* Start from the left */
+  bottom: 0; /* Start from the bottom */
+  transform: translateX(0) rotate(45deg); /* Tilt the rocket slightly to the right */
+  width: 100px; /* Adjust rocket size */
+  height: auto; /* Maintain aspect ratio */
+  animation: moveRocket 5s ease-out forwards; /* Run animation once and stop */
+  z-index: 3; /* Ensure the rocket stays above the sections */
+}
+
+@keyframes moveRocket {
+  0% {
+    left: 0; /* Start from the left */
+    bottom: 0; /* Start from the bottom */
+  }
+  100% {
+    left: 55%; /* Move it to the center horizontally */
+    bottom: 100%; /* Move to the top */
+    opacity: 0; /* Make it disappear when it reaches the top */
+    transform: translateX(-50%) rotate(15deg); /* Keep it tilted */
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+
+  .left-section {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-top: 2rem;
+  }
+}
+
+
+
+/* Adjusting the logo in the right section */
+.logo {
+  font-size: 3rem; /* Increase the font size for the logo */
+  font-weight: bold;
+  color: #fff; /* Adjust the color as needed */
+  margin-bottom: 2rem;
+}

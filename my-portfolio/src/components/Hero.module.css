@@ -1,0 +1,64 @@
+/* Animation for the h2 */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation for the h1 */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Applying the animations */
+.hero .greeting {
+  animation: fadeIn 1.5s ease-out;
+  font-size : 2rem;
+}
+
+.hero .name {
+  animation: slideIn 1.5s ease-out 0.5s; /* Delayed to start after h2 */
+  font-size : 3.5rem;
+}
+
+/* Maintain margin-top and add animation */
+.hero {
+  margin-top: 8rem;
+  max-width: 600px;
+}
+
+.hero .greeting {
+  margin-top: 0 rem; /* Ensure greeting starts without any additional margin */
+}
+
+.hero .name {
+  margin-top: 1rem; /* Add any spacing you want between the greeting and name */
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 4.5rem;
+  }
+
+  .name {
+    font-size: 15 rem;
+  }
+
+  .greeting {
+    font-size: 4rem;
+  }
+}
+

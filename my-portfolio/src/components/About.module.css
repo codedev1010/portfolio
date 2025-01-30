@@ -1,0 +1,124 @@
+.about {
+    padding: 4rem 2rem;
+    background-color: var(--secondary-color, #f5f5f5);
+    min-height: 100vh;
+    /* background: url("/night5.jpg") no-repeat center center;
+      background-size: cover; */
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: var(--primary-color, #333);
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
+  /* Main grid layout */
+  .details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 100%;
+  }
+  
+  /* Top row styling */
+  .detail:nth-child(1),
+  .detail:nth-child(2) {
+    grid-column: span 1;
+  }
+  
+  /* Academic Achievements card - full width */
+  .detail:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+  
+  /* Bottom row styling */
+  .detail:nth-child(4),
+  .detail:nth-child(5) {
+    grid-column: span 1;
+  }
+  
+  .detail {
+    background: var(--accent-color, #fff);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .detail:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .detail h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color, #333);
+  }
+  
+  .detail p {
+    color: var(--text-color, #4a4a4a);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+  
+  /* List styling */
+  .detail ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .detail li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    color: var(--text-color, #4a4a4a);
+  }
+  .detail:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(to right, #D8B7DD, #6A4C9C); /* Darker background color on hover */
+    color: light black /* Change text color to white when hovered */
+  }
+  .detail:hover h3,
+.detail:hover p,
+.detail:hover li {
+  color: light black; /* Change text color to white on hover */
+}
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .details {
+      grid-template-columns: 1fr;
+    }
+    
+    .detail:nth-child(n) {
+      grid-column: 1;
+    }
+    
+    .about {
+      padding: 2rem 1rem;
+    }
+    
+    .title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  }

@@ -1,0 +1,119 @@
+/* LeetCode.module.css */
+.leetcode {
+  padding: 4rem 2rem;
+  background-color: #ffffff;
+  background: url("/night5.jpg") no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 3rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between; /* Changed from grid to flex for better control */
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.statCard {
+  position: relative;
+  flex: 1;
+  background: #ffffff;
+  padding: 3rem; /* Increased padding to make the content larger */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  background: var(--accent-color, #fff);
+}
+
+.statCard:hover {
+  background: linear-gradient(to right, #ADD8E6, #E6E6FA);
+  color: linear-gradient(to right, #D8BFD8, #FFB6C1);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+.statCard:hover .number {
+  color: linear-gradient(to right, #D8BFD8, #FFB6C1);
+}
+
+.statCard:hover h3 {
+  color: linear-gradient(to right, #D8BFD8, #FFB6C1);
+}
+
+.statCard h3 {
+  font-size: 1.2rem; /* Slightly increased size */
+  color: #262626;
+  margin-bottom: 2rem; /* Increased spacing */
+}
+
+.number {
+  font-size: 4.5rem; /* Larger size for more visibility */
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #262626;
+  margin: 1.5rem 0; /* Increased spacing */
+}
+
+.subtitle {
+  color: #8c8c8c;
+  font-size: 0.9rem;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  color: #262626;
+}
+
+.error {
+  color: #ff4d4f;
+}
+
+.breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .stats {
+    flex-direction: column; /* Stack the sections on smaller screens */
+    align-items: center; /* Center the content */
+  }
+
+  .statCard {
+    max-width: 100%; /* Ensure full width for smaller screens */
+    margin-bottom: 2rem;
+  }
+
+  .leetcode {
+    padding: 2rem 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem; /* Adjust title size for smaller screens */
+  }
+  .number {
+    font-size: 3rem; /* Smaller size for numbers on smaller screens */
+  }
+}
