@@ -8,6 +8,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    color : var(--text-color, #4a4a4a);
   }
   
   .title {
@@ -54,7 +55,7 @@
   }
   
   .detail {
-    background: var(--accent-color, #fff);
+    background:  #f0f0f0;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
