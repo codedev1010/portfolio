@@ -13,8 +13,6 @@ const fetchLeetCodeData = async (username) => {
   return { profile: await response.json() };
 };
 
-
-
 export function LeetCode() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -81,32 +79,36 @@ export function LeetCode() {
       <div className={styles.container}>
         <h1 className={styles.title}>LeetCode Profile</h1>
         <div className={styles.stats}>
-          <a href="https://leetcode.com/u/rounak_100/" target="_blank" rel="noopener noreferrer" className={styles.statCard}>
-            <h2>Problems Solved</h2>
+          <div className={styles.statCard}>
+            <a href="https://leetcode.com/u/rounak_100/" target="_blank" rel="noopener noreferrer">
+              <h2>Problems Solved</h2>
+            </a>
             <div className={styles.number}>{profile?.totalSolved || 0}</div>
             <div className={styles.breakdown}>
               <div className={styles.progressContainer}>
                 <h3 className={styles.progressLabel}>Easy</h3>
                 <CircularProgress percentage={(profile?.easySolved / profile?.totalSolved) * 100} />
-                <h3 className={styles.progressLabel} style={{marginTop: '1rem'}}>{profile?.easySolved}</h3>
+                <h3 className={styles.progressLabel} style={{ marginTop: '1rem' }}>{profile?.easySolved}</h3>
               </div>
               <div className={styles.progressContainer}>
                 <h3 className={styles.progressLabel}>Medium</h3>
                 <CircularProgress percentage={(profile?.mediumSolved / profile?.totalSolved) * 100} />
-                <h3 className={styles.progressLabel} style={{marginTop: '1rem'}}>{profile?.mediumSolved}</h3>
+                <h3 className={styles.progressLabel} style={{ marginTop: '1rem' }}>{profile?.mediumSolved}</h3>
               </div>
               <div className={styles.progressContainer}>
                 <h3 className={styles.progressLabel}>Hard</h3>
                 <CircularProgress percentage={(profile?.hardSolved / profile?.totalSolved) * 100} />
-                <h3 className={styles.progressLabel} style={{marginTop: '1rem'}}>{profile?.hardSolved}</h3>
+                <h3 className={styles.progressLabel} style={{ marginTop: '1rem' }}>{profile?.hardSolved}</h3>
               </div>
             </div>
-          </a>
-          <a href="https://leetcode.com/u/rounak_100/" target="_blank" rel="noopener noreferrer" className={styles.statCard}>
-            <h2>Global Ranking</h2>
+          </div>
+          <div className={styles.statCard}>
+            <a href="https://leetcode.com/u/rounak_100/" target="_blank" rel="noopener noreferrer">
+              <h2>Global Ranking</h2>
+            </a>
             <h3 style={{ marginTop: "50px" }}>RANK</h3>
-            <div className={styles.number} style={{ marginTop: "40px" , fontSize :"5.5rem"}}>{profile?.ranking || "N/A"}</div>
-          </a>
+            <div className={styles.number} style={{ marginTop: "40px", fontSize: "5.5rem" }}>{profile?.ranking || "N/A"}</div>
+          </div>
         </div>
       </div>
     </section>

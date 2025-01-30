@@ -41,7 +41,7 @@ export function Projects() {
                             <p><strong>Technologies:</strong>C/C++,Arduino,NodeMcu,IOT</p>
                         </div>
                         <div className={styles.project}>
-                            <h3>Business Management DBMS</h3>
+                            <h3><a href="https://youtu.be/lCp4tWhv6ao" target="_blank" rel="noopener noreferrer">Business Management DBMS</a></h3>
                             <p>
                                 Developed a database system for tracking daily sales, top orders, peak sales time slots, and order categorization for better business insights.
                             </p>

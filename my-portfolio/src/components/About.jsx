@@ -13,17 +13,17 @@ export function About() {
           </p>
           <div className={styles.details}>
             <div className={styles.detail}>
-              <h3>University</h3>
-              <h4>Netaji Subhash University of Technology</h4>
-              <h5>B.Tech in Computer Science</h5>
-              <h5>CGPA: 8.30</h5>
-            </div>
-            <div className={styles.detail}>
               <h3>Senior Secondary Education</h3>
               <h4>Sneh International School</h4>
               <h5>CBSE Board</h5>
               <h5>Class X: 97.4%</h5>
               <h5>Class XII: 95%</h5>
+            </div>
+            <div className={styles.detail}>
+              <h3>Higher Education</h3>
+              <h4>Netaji Subhash University of Technology</h4>
+              <h5>B.Tech in Computer Science</h5>
+              <h5>CGPA: 8.30</h5>
             </div>
             <div className={`${styles.detail} ${styles.largeDetail}`}>
               <h3>Academic Achievements and Awards</h3>
