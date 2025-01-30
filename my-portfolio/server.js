@@ -1,6 +1,6 @@
-import express from "express";
-import cors from "cors";
-import fetch from "node-fetch";
+import express from 'express';
+import cors from 'cors';
+import fetch from 'node-fetch';
 
 const app = express();
 app.use(cors());
@@ -56,5 +56,5 @@ app.get("/api/leetcode/:username", async (req, res) => {
   }
 });
 
-// Export the app for serverless function
-module.exports = app;
+// Use ES module export
+export default app;
