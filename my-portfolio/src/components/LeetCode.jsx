@@ -3,20 +3,16 @@ import styles from "./LeetCode.module.css";
 import CircularProgress from './CircularProgress';
 
 const fetchLeetCodeData = async (username) => {
-  const apiUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/api/leetcode/${username}`
-    : `http://localhost:3000/api/leetcode/${username}`;  // Use localhost during development
+  const apiUrl = `https://portfolio-x54w.vercel.app/api/leetcode/${username}`;
 
-  const [profileResponse] = await Promise.all([fetch(apiUrl)]);
-
-  if (!profileResponse.ok) {
-    throw new Error(`Failed to fetch profile: ${profileResponse.status}`);
+  const response = await fetch(apiUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch profile: ${response.status}`);
   }
 
-  return {
-    profile: await profileResponse.json(),
-  };
+  return { profile: await response.json() };
 };
+
 
 
 export function LeetCode() {
