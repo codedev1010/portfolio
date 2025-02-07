@@ -1,8 +1,8 @@
 .leetcode {
   padding: 4rem 2rem;
   background: var(--accent-color, #b6b5b5);
-  background: url("/night5.jpg") no-repeat center center;
-  background-size: cover;
+  background: url("/night5.jpg") repeat center center;
+  background-size: contain;
   min-height: 100vh;
 }
 
@@ -32,23 +32,69 @@
 
 .statCard {
   position: relative;
-  flex: 1; /* Each stat card takes equal width */
-  padding: 3rem; /* Increased padding to make the content larger */
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: all 0.3s ease;
+  background: linear-gradient(to right, #ADD8E6, #E6E6FA);
+  flex: 1;
   background: var(--accent-color, #b6b5b5);
+  color: #333;
+  padding: 3.9rem;
   justify-content: center;
+  text-align: center;
   align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .statCard:hover {
   background: linear-gradient(to right, #ADD8E6, #E6E6FA);
-  color: linear-gradient(to right, #D8BFD8, #FFB6C1);
+  color: #333;
   transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  border: 2px solid transparent;
+  animation: borderGlow 1s infinite alternate;
 }
+
+@keyframes borderGlow {
+  0% {
+    border-color: #B0E0E6; /* Light blue */
+    border-color: #4682B4;
+  }
+  100% {
+    border-color: #D8BFD8; /* Light purple */
+    border-color: #6A5ACD;
+  }
+}
+
+
+/* Twinkling Stars Effect */
+.statCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 1%, transparent 15%),
+              radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.8) 1%, transparent 10%),
+              radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.6) 1%, transparent 10%),
+              radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.7) 1%, transparent 15%);
+  animation: twinkle 2s infinite alternate;
+}
+
+/* Twinkle Animation */
+@keyframes twinkle {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
 
 .statCard h3,
 .statCard .number,
@@ -112,7 +158,7 @@
 }
 
 .badge:hover {
-  background: rgba(255, 255, 255, 0.2); /* Slightly more opaque on hover */
+  background: linear-gradient(to right, #E6E6FA, #F3E6FF);
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }

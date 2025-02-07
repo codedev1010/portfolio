@@ -11,7 +11,7 @@ function App() {
   const [logoText, setLogoText] = useState("Welcome!");
 
   useEffect(() => {
-    const texts = ["Hello!","नमस्ते!","Bonjour!", "ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ!", "Hola!", "Ciao!", "안녕하세요!", "こんにちは!", "你好!", "Olá!", "Привет!", "Merhaba!"];
+    const texts = ["Hello!", "नमस्ते!", "Bonjour!", "ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ!", "Hola!", "Ciao!", "안녕하세요!", "こんにちは!", "你好!", "Olá!", "Привет!", "Merhaba!"];
     let index = 0;
 
     const interval = setInterval(() => {
@@ -38,10 +38,25 @@ function App() {
         </div>
       </div>
       <img src="/rocket2.webp" alt="rocket" className="rocket" />
+      <div className="divider-container">
+        <div className="divider"></div>
+      </div>
       <About />
+      <div className="divider-container">
+        <div className="divider"></div>
+      </div>
       <Skills />
+      <div className="divider-container">
+        <div className="divider"></div>
+      </div>
       <LeetCode />
+      <div className="divider-container">
+        <div className="divider"></div>
+      </div>
       <Projects />
+      <div className="divider-container">
+        <div className="divider"></div>
+      </div>
     </div>
   );
 }

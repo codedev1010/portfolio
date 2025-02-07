@@ -40,6 +40,8 @@ export function LeetCode() {
         const processedContestData = {
           contestRating: Math.ceil(data.contest?.contestRating) || "N/A", // Round the rating
           globalRanking: data.contest?.contestGlobalRanking || "N/A",
+          contestAttend: data.contest?.contestAttend || 0, // Add number of contests attended
+          contestTopPercentage: data.contest?.contestTopPercentage || 0, // Add contest top percentage
         };
 
         // Process badges data
@@ -124,14 +126,43 @@ export function LeetCode() {
             <a href="https://leetcode.com/u/rounak_100/" target="_blank" rel="noopener noreferrer">
               <h2>Contest Rating</h2>
             </a>
-            <h2 style={{ marginTop: "50px",color: 'var(--text-color, #333333)' }}>RATING</h2>
+            <h2 style={{ marginTop: "50px", color: 'var(--text-color, #333333)' }}>RATING</h2>
             <div className={styles.number} style={{ marginTop: "30px", fontSize: "6rem" }}>
               {contestData?.contestRating || "N/A"}
             </div>
-            <h2 style={{ marginTop: "20px",color: 'var(--text-color, #333333)' }}>GLOBAL RANK</h2>
+            <h2 style={{ marginTop: "20px", color: 'var(--text-color, #333333)' }}>GLOBAL RANK</h2>
             <div className={styles.number} style={{ marginTop: "10px", fontSize: "4rem" }}>
               {contestData?.globalRanking || "N/A"}
             </div>
+
+            {/* Add Contest Attended and Top Percentage */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginTop: '20px',
+              gap: '3rem',
+              justifyContent :'center',
+              flexWrap: 'wrap'  // ✅ Allows wrapping on small screens
+            }}>
+              <div style={{ minWidth: '120px', textAlign: 'center' }}>  {/* ✅ Ensures responsiveness */}
+                <h3 style={{ color: 'var(--text-color, #333333)' }}>Contests Attended</h3>
+                <div
+                  className={`${styles.number} ${styles.badge}`}
+                  style={{ fontSize: "2rem", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {contestData?.contestAttend || 0}
+                </div>
+              </div>
+              <div style={{ minWidth: '150px', textAlign: 'center' }}>  {/* ✅ Prevents shrinking in small screens */}
+                <h3 style={{ color: 'var(--text-color, #333333)' }}>Top Percentage</h3>
+                <div
+                  className={`${styles.number} ${styles.badge}`}
+                  style={{ fontSize: "2rem", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {contestData?.contestTopPercentage || 0}%
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 

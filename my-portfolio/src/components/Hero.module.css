@@ -36,11 +36,51 @@
   font-size: clamp(2rem, 5vw, 3.5rem);
   animation: slideIn 1.5s ease-out 0.5s;
   margin-bottom: clamp(1rem, 3vw, 2rem);
+  display: inline-block;
+  cursor: pointer;
+}
+
+.hero .name span {
+  display: inline-block;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Reset animation so it triggers each time */
+.hero .name:hover span {
+  animation: none;
+}
+
+/* Apply wave effect */
+.hero .name:hover span {
+  animation: waveEffect 1s ease-in-out;
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+@keyframes waveEffect {
+  0% {
+    transform: translateY(0);
+    color: #000;
+  }
+  50% {
+    transform: translateY(-10px);
+    color: #4682B4; /* Steel Blue */
+  }
+  100% {
+    transform: translateY(0);
+    color: #6A5ACD; /* Slate Blue */
+  }
 }
 
 .hero .tagline {
   font-size: clamp(1rem, 2vw, 1.25rem);
   margin-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* Ensure wave effect works properly */
+.hero .name:hover span {
+  display: inline-block;
+  animation: waveEffect 1s ease-in-out;
+  animation-delay: calc(var(--index) * 0.1s);
 }
 
 .social-icons {

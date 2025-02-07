@@ -6,11 +6,16 @@ export function About() {
       <div className={styles.container}>
         <h2 className={styles.title}>About Me</h2>
         <div className={styles.content}>
-          <p className={styles.description}>
-            I am deeply passionate about Data Structures & Algorithms, and currently expanding my expertise in Full Stack Development while mastering C++, Python, and JavaScript. 
-            With a strong analytical mindset, I thrive on solving complex problems and am committed to continuous learning. 
-            Outside of technology, I actively pursue chess, cricket, and perform stand-up comedy at open mic events.
-          </p>
+          <div className={styles.detail} style={{
+            color: "	#333333",
+            fontWeight: 600,
+            fontSize: "1.1rem",
+          }}>
+
+           <p> I am deeply passionate about Data Structures & Algorithms, and currently expanding my expertise in Full Stack Development while mastering C++, Python, and JavaScript.
+            With a strong analytical mindset, I thrive on solving complex problems and am committed to continuous learning.
+            Outside of technology, I actively pursue chess, cricket, and perform stand-up comedy at open mic events.</p>
+          </div>
           <div className={styles.details}>
             <div className={styles.detail}>
               <h3>Senior Secondary Education</h3>
