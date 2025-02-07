@@ -29,6 +29,7 @@ function App() {
         <div className="left-section">
           <div className="logo">{logoText}</div>
           <Hero />
+          <img src="/rocket2.webp" alt="rocket" className="rocket" />
         </div>
         <div className="right-section">
           <Header />
@@ -37,7 +38,6 @@ function App() {
           </div>
         </div>
       </div>
-      <img src="/rocket2.webp" alt="rocket" className="rocket" />
       <div className="divider-container">
         <div className="divider"></div>
       </div>
