@@ -1,7 +1,6 @@
-/* LeetCode.module.css */
 .leetcode {
   padding: 4rem 2rem;
-  background-color: #ffffff;
+  background: var(--accent-color, #b6b5b5);
   background: url("/night5.jpg") no-repeat center center;
   background-size: cover;
   min-height: 100vh;
@@ -14,26 +13,34 @@
 
 .title {
   font-size: 2rem;
-  color: white;
+  color: white; /* Ensure consistent color */
   margin-bottom: 3rem;
 }
 
 .stats {
   display: flex;
-  justify-content: space-between; /* Changed from grid to flex for better control */
-  gap: 2rem;
-  flex-wrap: wrap;
+  justify-content: space-between; /* Space out the stat cards evenly */
+  gap: 2rem; /* Add gap between stat cards */
+  flex-wrap: nowrap; /* Prevent wrapping to ensure all cards stay in one line */
+}
+
+.stats:last-child .statCard {
+  flex: 1 1 100%; /* Take full width */
+  max-width: 100%; /* Ensure it spans the full width */
+  margin-top: 2rem; /* Add margin to separate from the first row */
 }
 
 .statCard {
   position: relative;
-  flex: 1;
+  flex: 1; /* Each stat card takes equal width */
   padding: 3rem; /* Increased padding to make the content larger */
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: all 0.3s ease;
-  background: var(--secondary-color, rgb(132, 132, 132));
+  background: var(--accent-color, #b6b5b5);
+  justify-content: center;
+  align-items: center;
 }
 
 .statCard:hover {
@@ -43,31 +50,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-
-
-
-.statCard:hover .number {
-  color: linear-gradient(to right, #D8BFD8, #FFB6C1);
+.statCard h3,
+.statCard .number,
+.progressLabel {
+  color: var(--text-color, #333333); /* Ensure consistent text color */
 }
 
-.statCard:hover h3 {
-  color: linear-gradient(to right, #D8BFD8, #FFB6C1);
-}
-
-.statCard h3 {
-  font-size: 1.2rem; /* Slightly increased size */
-  color: #262626;
-  margin-bottom: 2rem; /* Increased spacing */
-}
-
-.number {
+.statCard .number {
   font-size: 4.5rem; /* Larger size for more visibility */
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #262626;
   margin: 1.5rem 0; /* Increased spacing */
 }
 
@@ -93,6 +87,53 @@
   margin-top: 1.5rem;
 }
 
+.badgesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-color); /* Ensure consistent text color */
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--secondary-color);
+  backdrop-filter: blur(5px); /* Blur effect for glassmorphism */
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  background: rgba(255, 255, 255, 0.2); /* Slightly more opaque on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.badgeIcon {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+.badge p {
+  margin: 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.badgesContainer p {
+  color: #8c8c8c;
+  font-size: 1rem;
+}
+
 @media (max-width: 768px) {
   .stats {
     flex-direction: column; /* Stack the sections on smaller screens */
@@ -107,12 +148,18 @@
   .leetcode {
     padding: 2rem 1rem;
   }
-}
-@media (max-width: 768px) {
+
   .title {
     font-size: 1.5rem; /* Adjust title size for smaller screens */
   }
+
   .number {
     font-size: 3rem; /* Smaller size for numbers on smaller screens */
+  }
+
+  .statCard h3,
+  .statCard .number,
+  .progressLabel {
+    color: var(--text-color, #333333); /* Ensure consistent text color on mobile */
   }
 }

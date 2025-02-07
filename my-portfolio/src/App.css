@@ -3,6 +3,7 @@
   --secondary-color: #f5f5f5;
   --accent-color: #ffffff;
   --text-color: #333333;
+  --base-spacing: clamp(1rem, 2vw, 2rem);
 }
 
 * {
@@ -13,46 +14,52 @@
 
 body {
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .app {
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .app-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   min-height: 100vh;
-  position: relative; /* Needed for positioning the rocket */
+  width: 100%;
+  position: relative;
 }
 
 .left-section {
   background: url("/night.jpeg") no-repeat center center;
   background-size: cover;
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
   color: white;
-  z-index: 1; /* Ensure left section stays behind the rocket */
+  z-index: 1;
+  min-height: 100vh;
 }
 
 .right-section {
-  background-color: var(--primary-color);
   background: url("/night.jpeg") no-repeat center center;
   background-size: cover;
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 2; /* Ensure right section stays behind the rocket */
+  z-index: 2;
+  min-height: 100vh;
 }
 
 .logo {
-  font-size: 1rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: bold;
-  margin-bottom: 2rem;
+  color: #fff;
+  margin-bottom: clamp(1rem, 3vw, 2rem);
 }
 
 .image-container {
@@ -73,51 +80,68 @@ body {
 
 .rocket {
   position: absolute;
-  left: 10; /* Start from the left */
-  bottom: 0; /* Start from the bottom */
-  transform: translateX(0) rotate(45deg); /* Tilt the rocket slightly to the right */
-  width: 100px; /* Adjust rocket size */
-  height: auto; /* Maintain aspect ratio */
-  animation: moveRocket 5s ease-out forwards; /* Run animation once and stop */
-  z-index: 3; /* Ensure the rocket stays above the sections */
+  left: 0;
+  bottom: 0;
+  transform: translateX(0) rotate(45deg);
+  width: clamp(60px, 8vw, 100px);
+  height: auto;
+  animation: moveRocket 5s ease-out forwards;
+  z-index: 3;
+  overflow: hidden;
 }
 
 @keyframes moveRocket {
   0% {
-    left: 0; /* Start from the left */
-    bottom: 0; /* Start from the bottom */
+    left: 0;
+    bottom: 0;
   }
   100% {
-    left: 55%; /* Move it to the center horizontally */
-    bottom: 100%; /* Move to the top */
-    opacity: 0; /* Make it disappear when it reaches the top */
-    transform: translateX(-50%) rotate(15deg); /* Keep it tilted */
+    left: 55%;
+    bottom: 100%;
+    opacity: 0;
+    transform: translateX(-50%) rotate(15deg);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .app-container {
     grid-template-columns: 1fr;
   }
 
   .left-section {
-    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+    min-height: 60vh;
+  }
+
+  .right-section {
+    min-height: 40vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .left-section {
+    min-height: 50vh;
+  }
+
+  .right-section {
+    min-height: 50vh;
   }
 
   .image-container {
     position: relative;
     width: 100%;
-    height: 400px;
-    margin-top: 2rem;
+    height: clamp(300px, 50vh, 400px);
+    margin-top: clamp(1rem, 3vw, 2rem);
   }
 }
 
+@media (max-width: 480px) {
+  .left-section {
+    clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
+    padding: 1rem;
+  }
 
-
-/* Adjusting the logo in the right section */
-.logo {
-  font-size: 3rem; /* Increase the font size for the logo */
-  font-weight: bold;
-  color: #fff; /* Adjust the color as needed */
-  margin-bottom: 2rem;
+  .right-section {
+    padding: 1rem;
+  }
 }
