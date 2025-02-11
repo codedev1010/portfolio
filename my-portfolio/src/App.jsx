@@ -5,6 +5,7 @@ import { About } from "./components/About";
 import { Skills } from "./components/Skills";
 import { LeetCode } from "./components/LeetCode";
 import { Projects } from "./components/Projects";
+import { WelcomePopup } from "./components/WelcomePopup";
 import "./App.css";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   return (
     <div className="app">
       <div className="app-container">
+          <WelcomePopup/>
         <div className="left-section">
           <div className="logo">{logoText}</div>
           <Hero />
