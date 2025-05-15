@@ -12,9 +12,10 @@ export function About() {
             fontSize: "1.1rem",
           }}>
 
-           <p> I am deeply passionate about Data Structures & Algorithms, and currently expanding my expertise in Full Stack Development while mastering C++, Python, and JavaScript.
-            With a strong analytical mindset, I thrive on solving complex problems and am committed to continuous learning.
-            Outside of technology, I actively pursue chess, cricket, and perform stand-up comedy at open mic events.</p>
+            <p> Hi! I’m Rounak, a Computer Science undergrad at Netaji Subhas University of Technology (NSUT), Class of 2027.
+
+              I’m well-versed in Data Structures & Algorithms and currently exploring the world of Web Development. Outside of tech, I enjoy doing stand-up comedy, playing cricket, and sharpening my game in chess.
+              Whether it's debugging an error, delivering a punchline, or planning the next move on the board — I love the challenge and the thrill of learning something new every day.</p>
           </div>
           <div className={styles.details}>
             <div className={styles.detail}>

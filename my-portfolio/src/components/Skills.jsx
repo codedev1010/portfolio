@@ -6,7 +6,7 @@ export function Skills() {
     Frontend: ["React", "JavaScript", "HTML", "CSS"],
     Backend: ["Node.js", "Express", "MongoDB", "SQL"],
     Tools: ["Git", "VS Code", "VM Virtual Box", "Power BI"],
-    Other: ["Data Structures", "Algorithms", "OOPS", "Competitive Programming","Operating Systems","DataBase Management System"],
+    Others: ["Data Structures", "Algorithms", "OOPS", "Competitive Programming","Operating Systems","DataBase Management System","Machine Learning"],
   }
 
   return (

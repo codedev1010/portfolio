@@ -9,11 +9,12 @@ export function Projects() {
                     <div className={styles.projectList}>
                         <div className={styles.project}>
                             <h3>
-                                <a href="https://nsut-canteen-management.vercel.app/HomePage" target="_blank" rel="noopener noreferrer">
+                                <a href="https://easy-eats-canteen.vercel.app/HomePage" target="_blank" rel="noopener noreferrer">
                                     Student Center Management System - Link 1
                                 </a>
                                 {" | "}
-                                <a href="https://nsut-canteen-manager.vercel.app/HomePage" target="_blank" rel="noopener noreferrer">
+                                <a href="https://canteen-manager-frontend.vercel.app
+                                                                                       " target="_blank" rel="noopener noreferrer">
                                     Student Center Management System - Link 2
                                 </a>
                             </h3>
@@ -21,31 +22,31 @@ export function Projects() {
                                 Contributed in the frontend of the student center management system
                                 which allows them to order their meals online from the website instead of waiting
                                 in long queues.</p>
-                               <p> It also provides the admin with the functionality to manage the orders and the menu.
+                            <p> It also provides the admin with the functionality to manage the orders and the menu.
                             </p>
                             <p><strong>Technologies:</strong> React.js, JavaScript, HTML, CSS, Tailwind</p>
                         </div>
-
+                        <div className={styles.project}>
+                            <h3><a href="https://dhvanix.vercel.app/" target="_blank" rel="noopener noreferrer">Dhvanix - Music Streaming Platform</a></h3>
+                            <p>
+                                Built a frontend for users to stream added songs and albums with an intuitive and responsive UI
+                                and developed an admin panel for adding and managing songs and albums, ensuring structured content management
+                            </p>
+                            <p><strong>Technologies:</strong>React, JavaScript, HTML, CSS, MongoDB, Node.js, Express.js, Firebase Authentication, Cloudify</p>
+                        </div>
                         <div className={styles.project}>
                             <h3><a href="https://youtu.be/om4OJfnCGwE?si=sqpbmWr1acKlCfmm" target="_blank" rel="noopener noreferrer">Automated Water Irrigation System</a></h3>
                             <p>
                                 Implemented a system that automatically irrigates the plants based on the soil moisture level and weather conditions.
                             </p>
-                            <p><strong>Technologies:</strong> C/C++,Arduino,NodeMcu,IOT</p>
-                        </div>
-                        <div className={styles.project}>
-                            <h3><a href="https://youtu.be/AiZcETprKBc?si=ZyfZZlyWdSxafCR9" target="_blank" rel="noopener noreferrer">Automated Pulse Alert System</a></h3>
-                            <p>
-                                Implemented a system that automatically sends an alert message to the nearby hospital in case of a low pulse rate.
-                            </p>
-                            <p><strong>Technologies:</strong>C/C++,Arduino,NodeMcu,IOT</p>
+                            <p><strong>Technologies:</strong> C/C++,NodeMcu,IOT,Embedded Systems</p>
                         </div>
                         <div className={styles.project}>
                             <h3><a href="https://youtu.be/lCp4tWhv6ao" target="_blank" rel="noopener noreferrer">Business Management DBMS</a></h3>
                             <p>
                                 Developed a database system for tracking daily sales, top orders, peak sales time slots, and order categorization for better business insights.
                             </p>
-                            <p><strong>Technologies:</strong> DAX , PowerBI</p>
+                            <p><strong>Technologies:</strong> DAX , PowerBI, Data Visualization, Business Analytics</p>
                         </div>
 
                     </div>
