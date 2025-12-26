@@ -65,7 +65,8 @@ export function LeetCode() {
     return (
       <section id="leetcode" className={styles.leetcode}>
         <div className={styles.container}>
-          <h2 className={styles.title}>LeetCode Profile</h2>
+          <h2 className={styles.title}
+           style={{color: "#ffb347"}}>LeetCode Profile</h2>
           <div className={styles.loading}>Loading...</div>
         </div>
       </section>

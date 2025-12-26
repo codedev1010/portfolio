@@ -4,49 +4,101 @@ export function Projects() {
     return (
         <section id="projects" className={styles.projects}>
             <div className={styles.container}>
-                <h2 className={styles.title}>Projects</h2>
+                <h2 className={styles.title}
+                  style={{color: "#ffb347"}}
+                >Projects</h2>
+
                 <div className={styles.content}>
                     <div className={styles.projectList}>
+
+                        {/* 1 - BLOG PLATFORM */}
                         <div className={styles.project}>
                             <h3>
-                                <a href="https://easy-eats-canteen.vercel.app/HomePage" target="_blank" rel="noopener noreferrer">
-                                    Student Center Management System - Link 1
-                                </a>
-                                {" | "}
-                                <a href="https://canteen-manager-frontend.vercel.app
-                                                                                       " target="_blank" rel="noopener noreferrer">
-                                    Student Center Management System - Link 2
+                                <a href="https://blog-website-beta-navy.vercel.app" target="_blank">
+                                    Your Space - Online Blogging Platform
                                 </a>
                             </h3>
                             <p>
-                                Contributed in the frontend of the student center management system
-                                which allows them to order their meals online from the website instead of waiting
-                                in long queues.</p>
-                            <p> It also provides the admin with the functionality to manage the orders and the menu.
+                                This project is an online blogging platform where users can create,
+                                view, and manage blogs seamlessly. It includes a clean post editor,
+                                subscription model, likes, user analytics & more.
                             </p>
-                            <p><strong>Technologies:</strong> React.js, JavaScript, HTML, CSS, Tailwind</p>
+
+                            <div className={styles.techContainer}>
+                                <strong>Technologies:</strong>
+                                <div className={styles.techList}>
+                                    {["React","Node.js","Appwrite","Tailwind CSS","Razorpay"].map((tech) => (
+                                        <span key={tech} className={styles.techItem}>{tech}</span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
+
+                        {/* 2 - ATTENDANCE TRACKER */}
                         <div className={styles.project}>
-                            <h3><a href="https://dhvanix.vercel.app/" target="_blank" rel="noopener noreferrer">Dhvanix - Music Streaming Platform</a></h3>
+                            <h3>
+                                <a href="https://nsut-attendance-pied.vercel.app" target="_blank">
+                                    Proxy - NSUT Attendance Tracker
+                                </a>
+                            </h3>
                             <p>
-                                Built a frontend for users to stream added songs and albums with an intuitive and responsive UI
-                                and developed an admin panel for adding and managing songs and albums, ensuring structured content management
+                                A faster alternative to NSUT UMS built using browser automation +
+                                web scraping. Students can view attendance instantly without
+                                navigating multiple pages.
                             </p>
-                            <p><strong>Technologies:</strong>React, JavaScript, HTML, CSS, MongoDB, Node.js, Express.js, Firebase Authentication, Cloudify</p>
+
+                            <div className={styles.techContainer}>
+                                <strong>Technologies:</strong>
+                                <div className={styles.techList}>
+                                    {["React","Node.js","Tailwind CSS","Web Scraping","Puppeteer"].map((tech) => (
+                                        <span key={tech} className={styles.techItem}>{tech}</span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
+
+                        {/* 3 - MUSIC PLATFORM */}
                         <div className={styles.project}>
-                            <h3><a href="https://youtu.be/om4OJfnCGwE?si=sqpbmWr1acKlCfmm" target="_blank" rel="noopener noreferrer">Automated Water Irrigation System</a></h3>
+                            <h3>
+                                <a href="https://dhvanix.vercel.app" target="_blank">
+                                    Dhvanix - Music Streaming Platform
+                                </a>
+                            </h3>
                             <p>
-                                Implemented a system that automatically irrigates the plants based on the soil moisture level and weather conditions.
+                                Full-stack streaming platform with admin panel for managing albums
+                                and songs. Smooth UI & secure backend with DB integration.
                             </p>
-                            <p><strong>Technologies:</strong> C/C++,NodeMcu,IOT,Embedded Systems</p>
+
+                            <div className={styles.techContainer}>
+                                <strong>Technologies:</strong>
+                                <div className={styles.techList}>
+                                    {["React","Node.js","Tailwind CSS","MongoDB","Cloudinary"].map((tech) => (
+                                        <span key={tech} className={styles.techItem}>{tech}</span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
+
+                        {/* 4 - DBMS PROJECT */}
                         <div className={styles.project}>
-                            <h3><a href="https://youtu.be/lCp4tWhv6ao" target="_blank" rel="noopener noreferrer">Business Management DBMS</a></h3>
+                            <h3>
+                                <a href="https://youtu.be/lCp4tWhv6ao" target="_blank">
+                                    Business Management DBMS
+                                </a>
+                            </h3>
                             <p>
-                                Developed a database system for tracking daily sales, top orders, peak sales time slots, and order categorization for better business insights.
+                                Dashboard for visualizing sales, trends, top orders and business stats.
+                                Built for analytical decision making.
                             </p>
-                            <p><strong>Technologies:</strong> DAX , PowerBI, Data Visualization, Business Analytics</p>
+
+                            <div className={styles.techContainer}>
+                                <strong>Technologies:</strong>
+                                <div className={styles.techList}>
+                                    {["DAX","Power BI","Data Visualization","Business Analytics"].map((tech) => (
+                                        <span key={tech} className={styles.techItem}>{tech}</span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
                     </div>

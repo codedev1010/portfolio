@@ -1,211 +1,133 @@
 .leetcode {
   padding: 4rem 2rem;
-  background: var(--accent-color, #b6b5b5);
-  background: url("/night5.jpg") repeat center center;
+  background: #0d0d0d url("/night5.jpg") repeat center center; /* dark base */
   background-size: contain;
   min-height: 100vh;
 }
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .title {
-  font-size: 2rem;
-  color: white; /* Ensure consistent color */
+  font-size: 2.5rem;
+  font-weight: 700;
+   color: #ffb347; /* 🔥 Amber highlight to match dashboard */
+  text-align: left;
   margin-bottom: 3rem;
 }
 
+/* Dashboard row layout */
 .stats {
-  display: flex;
-  justify-content: space-between; /* Space out the stat cards evenly */
-  gap: 2rem; /* Add gap between stat cards */
-  flex-wrap: nowrap; /* Prevent wrapping to ensure all cards stay in one line */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
-.stats:last-child .statCard {
-  flex: 1 1 100%; /* Take full width */
-  max-width: 100%; /* Ensure it spans the full width */
-  margin-top: 2rem; /* Add margin to separate from the first row */
-}
-
+/* Unified dark dashboard card style */
 .statCard {
-  position: relative;
-  background: linear-gradient(to right, #ADD8E6, #E6E6FA);
-  flex: 1;
-  background: var(--accent-color, #b6b5b5);
-  color: #333;
-  padding: 3.9rem;
-  justify-content: center;
+  background: #1a1a1a; /* solid dark */
+  border: 1px solid #292929;
+  border-radius: 14px;
+  padding: 2.5rem;
   text-align: center;
-  align-items: center;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: 0.25s ease-in-out;
+  box-shadow: 0px 0px 10px #00000066 inset;
 }
 
 .statCard:hover {
-  background: linear-gradient(to right, #ADD8E6, #E6E6FA);
-  color: #333;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 40px;
-  border: 2px solid transparent;
-  animation: borderGlow 1s infinite alternate;
+  transform: translateY(-4px);
+  border-color: #ffb347; /* highlight border on hover */
+  box-shadow: 0px 0px 14px #ffb34733;
 }
 
-@keyframes borderGlow {
-  0% {
-    border-color: #B0E0E6; /* Light blue */
-    border-color: #4682B4;
-  }
-  100% {
-    border-color: #D8BFD8; /* Light purple */
-    border-color: #6A5ACD;
-  }
+/* Headings */
+.statCard h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fafafa;
+  margin-bottom: 0.6rem;
 }
 
-
-/* Twinkling Stars Effect */
-.statCard::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 1%, transparent 15%),
-              radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.8) 1%, transparent 10%),
-              radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.6) 1%, transparent 10%),
-              radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.7) 1%, transparent 15%);
-  animation: twinkle 2s infinite alternate;
+.statCard h3 {
+  font-size: 1rem;
+  color: #cfcfcf;
 }
 
-/* Twinkle Animation */
-@keyframes twinkle {
-  0% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-
-.statCard h3,
-.statCard .number,
-.progressLabel {
-  color: var(--text-color, #333333); /* Ensure consistent text color */
-}
-
-.statCard .number {
-  font-size: 4.5rem; /* Larger size for more visibility */
+/* Big numbers — KPI visual focus */
+.number {
+  font-size: 4.2rem;
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1.5rem 0; /* Increased spacing */
+  color: #ffb347; /* amber highlight */
+  margin-top: 1rem;
 }
 
-.subtitle {
-  color: #8c8c8c;
-  font-size: 0.9rem;
-}
-
-.loading, .error {
-  text-align: center;
-  padding: 2rem;
-  color: #262626;
-}
-
-.error {
-  color: #ff4d4f;
-}
-
+/* Difficulty circles area */
 .breakdown {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-.badgesContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1.5rem;
-}
-
+/* Contest mini badges */
 .badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-  color: var(--text-color); /* Ensure consistent text color */
-  padding: 1rem;
-  border-radius: 8px;
-  background: var(--secondary-color);
-  backdrop-filter: blur(5px); /* Blur effect for glassmorphism */
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
+  background: #262626;
+  color: #ffb347;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 600;
+  border: 1px solid #444;
+  transition: 0.2s;
 }
 
 .badge:hover {
-  background: linear-gradient(to right, #E6E6FA, #F3E6FF);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #ffb347;
+  color: #111;
+  border-color: #ffb347;
 }
 
-.badgeIcon {
-  width: 35px;
-  height: 35px;
-  object-fit: contain;
+/* ------------------------------------------------------------- */
+/* Badges Earned Grid */
+.badgesContainer {
+  display: flex;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
 }
 
-.badge p {
-  margin: 0;
-  font-size: 0.9rem;
+.badgesContainer .badge {
+  background: #262626;
+  border: 1px solid #333;
+  padding: 1rem;
+  width: 120px;
+  border-radius: 10px;
   text-align: center;
+  transition: 0.25s;
+  color: #eee;
 }
 
-.badgesContainer p {
-  color: #8c8c8c;
-  font-size: 1rem;
+.badgesContainer .badge:hover {
+  background: #ffb347;
+  color: #000;
+  transform: translateY(-4px);
+  border-color:#ffb347;
 }
 
+/* Badge icon */
+.badgeIcon {
+  width: 42px;
+  height: 42px;
+}
+
+/* ------------------------------------------------------------- */
+
+/* Responsive */
 @media (max-width: 768px) {
-  .stats {
-    flex-direction: column; /* Stack the sections on smaller screens */
-    align-items: center; /* Center the content */
-  }
-
-  .statCard {
-    max-width: 100%; /* Ensure full width for smaller screens */
-    margin-bottom: 2rem;
-  }
-
-  .leetcode {
-    padding: 2rem 1rem;
-  }
-
-  .title {
-    font-size: 1.5rem; /* Adjust title size for smaller screens */
-  }
-
-  .number {
-    font-size: 3rem; /* Smaller size for numbers on smaller screens */
-  }
-
-  .statCard h3,
-  .statCard .number,
-  .progressLabel {
-    color: var(--text-color, #333333); /* Ensure consistent text color on mobile */
-  }
+  .title { font-size: 2rem; }
+  .number { font-size: 3rem; }
+  .statCard { padding: 1.8rem; }
 }

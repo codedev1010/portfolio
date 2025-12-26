@@ -101,7 +101,7 @@ body{
 .logo {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: bold;
-  color: #fff;
+   color:#ffb347;   
   margin-bottom: clamp(1rem, 3vw, 2rem);
 }
 

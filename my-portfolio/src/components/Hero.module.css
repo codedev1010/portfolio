@@ -1,134 +1,75 @@
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+/* ==== Hero Dashboard Styling Upgrade ==== */
 
 .hero {
   margin-top: clamp(4rem, 10vh, 8rem);
-  width: min(90%, 600px);
+  width: min(90%, 650px);
   margin-inline: auto;
+  text-align: left;
+  color: #e6e6e6;
 }
 
+/* Greeting text */
 .hero .greeting {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  animation: fadeIn 1.5s ease-out;
-  margin-bottom: clamp(0.5rem, 2vw, 1rem);
+  color:#ffb347;              /* Warm amber highlight */
+  font-weight: 600;
 }
 
+/* Your name = Primary Focus */
 .hero .name {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  animation: slideIn 1.5s ease-out 0.5s;
-  margin-bottom: clamp(1rem, 3vw, 2rem);
-  display: inline-block;
-  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color:#ffffff;
+  cursor:pointer;
+  transition: 0.3s;
+  text-shadow: 0px 0px 10px #ffb34755;    /* soft glow */
 }
 
+.hero .name:hover {
+  text-shadow: 0px 0px 16px #ffb347aa;
+}
+
+/* Wave effect letters inherit colors */
 .hero .name span {
-  display: inline-block;
-  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  color: #fff;
 }
 
-/* Reset animation so it triggers each time */
-.hero .name:hover span {
-  animation: none;
-}
-
-/* Apply wave effect */
-.hero .name:hover span {
-  animation: waveEffect 1s ease-in-out;
-  animation-delay: calc(var(--index) * 0.1s);
-}
-
+/* Highlight colors for wave animation replaced for theme */
 @keyframes waveEffect {
-  0% {
-    transform: translateY(0);
-    color: #000;
-  }
-  50% {
-    transform: translateY(-10px);
-    color: #4682B4; /* Steel Blue */
-  }
-  100% {
-    transform: translateY(0);
-    color: #6A5ACD; /* Slate Blue */
-  }
+  0% { transform: translateY(0); color:#fff; }
+  50% { transform: translateY(-10px); color:#ffb347; }
+  100%{ transform: translateY(0); color:#ffcc66;    }
 }
 
+/* Tagline with subtle muted tone */
 .hero .tagline {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  margin-bottom: clamp(1.5rem, 4vw, 3rem);
+  opacity: .9;
+  color:#dcdcdc;
+  font-weight: 400;
+  max-width: 600px;
 }
 
-/* Ensure wave effect works properly */
-.hero .name:hover span {
-  display: inline-block;
-  animation: waveEffect 1s ease-in-out;
-  animation-delay: calc(var(--index) * 0.1s);
-}
-
-.social-icons {
-  display: flex;
-  gap: clamp(1rem, 2vw, 1.5rem);
-  margin-top: clamp(1rem, 3vw, 2rem);
-}
-
+/* ---- Social Icons ---- */
 .social-icons a {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  color: var(--accent-color);
+  color:#ffb347;
+  transition:0.3s;
 }
 
-.nav-items {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+.social-icons a:hover {
+   color: #ffb347; /* 🔥 Amber highlight to match dashboard */
+  text-shadow:0px 0px 10px #ffb347aa;
+  transform: translateY(-2px) scale(1.1);
 }
 
+/* ---- Navigation below hero ---- */
 .nav-item {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--accent-color);
-  text-decoration: none;
+  color:#dcdcdc;
+  font-weight: 500;
+  transition:.25s;
 }
 
-@media (max-width: 1024px) {
-  .hero {
-    margin-top: clamp(2rem, 5vh, 4rem);
-  }
+.nav-item:hover {
+  color:#ffb347;
+  transform:translateX(4px);
 }
 
-@media (max-width: 768px) {
-  .hero .name {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-  }
-
-  .hero .greeting {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
-  }
-}
-
-@media (max-width: 480px) {
-  .social-icons {
-    gap: 1rem;
-  }
-
-  .hero {
-    width: 95%;
-  }
-}
+/* ---- Mobile tweaks remain same ---- */

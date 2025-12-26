@@ -4,7 +4,7 @@ import styles from "./Hero.module.css";
 
 export function Hero() {
   const texts = [
-    "DSA Enthusiast / Web Dev in the Making",
+    "DSA Enthusiast / Full Stack Web Developer",
     "Part-Time Jokester / Full-Time Mood Swinger"
   ];
 
