@@ -1,60 +1,58 @@
 import React from 'react';
 
 const CircularProgress = ({ percentage }) => {
-  const radius = 40;
+  const radius = 38;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+  const offset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="relative w-24 h-24">
-      <svg 
-        width="100%" 
-        height="100%" 
-        viewBox="0 0 100 100"
-        style={{ transform: 'rotate(-90deg)' }}
-      >
-        {/* Background circle */}
-        <circle
-          cx="50"
-          cy="50"
-          r={radius}
-          fill="none"
-          stroke="#f0f0f0"
-          strokeWidth="8"
-        />
+    <div style={{
+      width: "150px",
+      height: "200px",
+      position: "relative",
+    }}>
+      <svg width="100%" height="100%" viewBox="0 0 100 100" style={{ transform:"rotate(-90deg)" }}>
         
-        {/* Progress circle with gradient */}
+        {/* Dark ring background */}
         <circle
-          cx="50"
-          cy="50"
-          r={radius}
+          cx="50" cy="50" r={radius}
+          stroke="#222"
+          strokeWidth="10"
           fill="none"
-          stroke="url(#progressGradient)"
-          strokeWidth="8"
-          strokeLinecap="round"
+        />
+
+        {/* Progress arc */}
+        <circle
+          cx="50" cy="50" r={radius}
+          stroke="url(#grad)"
+          strokeWidth="10"
           strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          style={{ transition: 'stroke-dashoffset 0.5s ease' }}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+          fill="none"
+          style={{ transition:"0.6s ease" }}
         />
-        
-        {/* Gradient definition */}
+
         <defs>
-          <linearGradient id="progressGradient" gradientTransform="rotate(90)">
-            <stop offset="0%" stopColor="#ef4743" />      {/* Red */}
-            <stop offset="50%" stopColor="#ffc01e" />     {/* Yellow */}
-            <stop offset="100%" stopColor="#00b8a3" />    {/* Green */}
+          <linearGradient id="grad">
+            <stop offset="0%" stopColor="#ff6b6b" />      {/* red */}
+            <stop offset="50%" stopColor="#ffb347" />     {/* yellow */}
+            <stop offset="100%" stopColor="#00d29b" />    {/* green */}
           </linearGradient>
         </defs>
       </svg>
-      
-      {/* Center text with variable color */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span 
-          className="text-lg font-bold"
-          style={{ color: 'var(--text-color, #333333)' }}
-        >
-          {Math.round(percentage)}%
-        </span>
+
+      {/* Animated glowing % */}
+      <div style={{
+        position:"absolute", inset:"0",
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        fontSize:"1rem",
+        fontWeight:"600",
+        color:"#ffb347"
+      }}>
+        {Math.round(percentage)}%
       </div>
     </div>
   );
