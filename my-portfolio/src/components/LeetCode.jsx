@@ -2,18 +2,48 @@ import { useState, useEffect } from "react";
 import styles from "./LeetCode.module.css";
 import CircularProgress from './CircularProgress';
 
+const BASE_URL = "https://alfa-leetcode-api.onrender.com";
+
 const fetchLeetCodeData = async (username) => {
-  const apiUrl = `https://rounakg.vercel.app/api/leetcode/${username}`;
+  try {
+    const [solvedRes, contestRes, badgesRes] = await Promise.all([
+      fetch(`${BASE_URL}/${username}/solved`),
+      fetch(`${BASE_URL}/${username}/contest`),
+      fetch(`${BASE_URL}/${username}/badges`)
+    ]);
 
-  const response = await fetch(apiUrl);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch profile: ${response.status}`);
+    if (!solvedRes.ok || !contestRes.ok || !badgesRes.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    const solved = await solvedRes.json();
+    const contest = await contestRes.json();
+    const badges = await badgesRes.json();
+
+    return { solved, contest, badges };
+
+  } catch (err) {
+    console.error("Error fetching Leetcode data:", err);
+    throw err;
   }
-
-  const data = await response.json();
-  console.log("API Response (JSON):", data); // Log the parsed JSON
-  return data;
 };
+
+// ⭐ Skeleton Loader Component
+function Skeleton({ width, height, radius = "8px" }) {
+  return (
+    <div
+      style={{
+        width,
+        height,
+        borderRadius: radius,
+        background: "linear-gradient(90deg,#3b3b3b 25%,#525252 50%,#3b3b3b 75%)",
+        backgroundSize: "200% 100%",
+        animation: "skeleton 1.6s infinite",
+        margin: "8px 0"
+      }}
+    ></div>
+  );
+}
 
 export function LeetCode() {
   const [solvedData, setSolvedData] = useState(null);
@@ -25,179 +55,171 @@ export function LeetCode() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const username = "rounak_100"; // Replace with dynamic username if needed
+        const username = "rounak_100";
         const data = await fetchLeetCodeData(username);
 
-        // Process solved data
-        const processedSolvedData = {
+        setSolvedData({
           totalSolved: data.solved?.solvedProblem || 0,
           easySolved: data.solved?.easySolved || 0,
           mediumSolved: data.solved?.mediumSolved || 0,
           hardSolved: data.solved?.hardSolved || 0,
-        };
+        });
 
-        // Process contest data
-        const processedContestData = {
-          contestRating: Math.ceil(data.contest?.contestRating) || "N/A", // Round the rating
+        setContestData({
+          contestRating: Math.ceil(data.contest?.contestRating) || "N/A",
           globalRanking: data.contest?.contestGlobalRanking || "N/A",
-          contestAttend: data.contest?.contestAttend || 0, // Add number of contests attended
-          contestTopPercentage: data.contest?.contestTopPercentage || 0, // Add contest top percentage
-        };
+          contestAttend: data.contest?.contestAttend || 0,
+          contestTopPercentage: data.contest?.contestTopPercentage || 0,
+        });
 
-        // Process badges data
-        const processedBadgesData = data.badges?.badges || [];
-
-        setSolvedData(processedSolvedData);
-        setContestData(processedContestData);
-        setBadgesData(processedBadgesData);
+        setBadgesData(data.badges?.badges || []);
       } catch (err) {
-        console.error("Error loading data:", err);
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-
     loadData();
   }, []);
 
+  /* ------------------ 🔥 Skeleton Loader UI ------------------ */
   if (loading) {
     return (
       <section id="leetcode" className={styles.leetcode}>
         <div className={styles.container}>
-          <h2 className={styles.title}
-           style={{color: "#ffb347"}}>LeetCode Profile</h2>
-          <div className={styles.loading}>Loading...</div>
+          <h2 className={styles.title} style={{ color: "#ffb347" }}>LeetCode Profile</h2>
+
+          <div className={styles.stats}>
+            <div className={styles.statCard}>
+              <Skeleton width="60%" height="25px" />
+              <Skeleton width="120px" height="60px" />
+              <Skeleton width="100%" height="150px" />
+            </div>
+            <div className={styles.statCard}>
+              <Skeleton width="50%" height="25px" />
+              <Skeleton width="120px" height="60px" />
+              <Skeleton width="120px" height="60px" />
+            </div>
+          </div>
+
+          <div className={styles.stats}>
+            <div className={styles.statCard}>
+              <Skeleton width="50%" height="25px" />
+              <Skeleton width="100%" height="150px" />
+            </div>
+          </div>
         </div>
       </section>
     );
   }
 
+  /* ------------------ 🔥 Error UI ------------------ */
   if (error) {
     return (
       <section id="leetcode" className={styles.leetcode}>
         <div className={styles.container}>
           <h2 className={styles.title}>LeetCode Profile</h2>
-          <div className={styles.error}>{error}</div>
+          <p className={styles.error}>⚠ {error}</p>
         </div>
       </section>
     );
   }
 
-  // Calculate percentages for solved problems
-  const totalSolved = solvedData?.totalSolved || 1; // Fallback to 1 to avoid division by zero
+  // Progress Values
+  const totalSolved = solvedData?.totalSolved || 1;
   const easyPercentage = (solvedData?.easySolved / totalSolved) * 100;
   const mediumPercentage = (solvedData?.mediumSolved / totalSolved) * 100;
   const hardPercentage = (solvedData?.hardSolved / totalSolved) * 100;
 
+  /* ------------------ 🔥 Main UI ------------------ */
   return (
     <section id="leetcode" className={styles.leetcode}>
       <div className={styles.container}>
         <h1 className={styles.title}>LeetCode Profile</h1>
 
-        {/* First Row: Problems Solved and Contest Rating */}
+        {/* Row 1 */}
         <div className={styles.stats}>
-          {/* Problems Solved Stat Card */}
           <div className={styles.statCard}>
-            <a href="https://leetcode.com/u/rounak_100/" target="_blank" rel="noopener noreferrer">
+            <a href="https://leetcode.com/u/rounak_100/" target="_blank">
               <h2>Problems Solved</h2>
             </a>
-            <div className={styles.number}>{solvedData?.totalSolved || 0}</div>
+            <div className={styles.number}>{solvedData?.totalSolved}</div>
+
             <div className={styles.breakdown}>
               <div className={styles.progressContainer}>
-                <h3 className={styles.progressLabel}>Easy</h3>
+                <h3>Easy</h3>
                 <CircularProgress percentage={easyPercentage} />
-                <h3 className={styles.progressLabel} style={{ marginTop: '1rem' }}>{solvedData?.easySolved}</h3>
+                <h3 style={{ marginTop: "1rem" }}>{solvedData?.easySolved}</h3>
               </div>
+
               <div className={styles.progressContainer}>
-                <h3 className={styles.progressLabel}>Medium</h3>
+                <h3>Medium</h3>
                 <CircularProgress percentage={mediumPercentage} />
-                <h3 className={styles.progressLabel} style={{ marginTop: '1rem' }}>{solvedData?.mediumSolved}</h3>
+                <h3 style={{ marginTop: "1rem" }}>{solvedData?.mediumSolved}</h3>
               </div>
+
               <div className={styles.progressContainer}>
-                <h3 className={styles.progressLabel}>Hard</h3>
+                <h3>Hard</h3>
                 <CircularProgress percentage={hardPercentage} />
-                <h3 className={styles.progressLabel} style={{ marginTop: '1rem' }}>{solvedData?.hardSolved}</h3>
+                <h3 style={{ marginTop: "1rem" }}>{solvedData?.hardSolved}</h3>
               </div>
             </div>
           </div>
 
-          {/* Contest Rating Stat Card */}
+          {/* Contest Card */}
           <div className={styles.statCard}>
-            <a href="https://leetcode.com/u/rounak_100/" target="_blank" rel="noopener noreferrer">
+            <a href="https://leetcode.com/u/rounak_100/" target="_blank">
               <h2>Contest Rating</h2>
             </a>
-            <h2 style={{ marginTop: "50px", color: 'var(--text-color, #333333)' }}>RATING</h2>
+
+            <h2 style={{ marginTop: "50px" }}>RATING</h2>
             <div className={styles.number} style={{ marginTop: "30px", fontSize: "6rem" }}>
-              {contestData?.contestRating || "N/A"}
+              {contestData?.contestRating}
             </div>
-            <h2 style={{ marginTop: "20px", color: 'var(--text-color, #333333)' }}>GLOBAL RANK</h2>
+
+            <h2 style={{ marginTop: "20px" }}>GLOBAL RANK</h2>
             <div className={styles.number} style={{ marginTop: "10px", fontSize: "4rem" }}>
-              {contestData?.globalRanking || "N/A"}
+              {contestData?.globalRanking}
             </div>
 
-            {/* Add Contest Attended and Top Percentage */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginTop: '20px',
-              gap: '3rem',
-              justifyContent :'center',
-              flexWrap: 'wrap'  // ✅ Allows wrapping on small screens
-            }}>
-              <div style={{ minWidth: '120px', textAlign: 'center' }}>  {/* ✅ Ensures responsiveness */}
-                <h3 style={{ color: 'var(--text-color, #333333)' }}>Contests Attended</h3>
-                <div
-                  className={`${styles.number} ${styles.badge}`}
-                  style={{ fontSize: "2rem", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {contestData?.contestAttend || 0}
+            <div style={{display:'flex',gap:'3rem',justifyContent:'center',flexWrap:'wrap',marginTop:'20px'}}>
+              <div style={{textAlign:'center'}}>
+                <h3>Contests Attended</h3>
+                <div className={`${styles.number} ${styles.badge}`} style={{fontSize:"2rem"}}>
+                  {contestData?.contestAttend}
                 </div>
               </div>
-              <div style={{ minWidth: '150px', textAlign: 'center' }}>  {/* ✅ Prevents shrinking in small screens */}
-                <h3 style={{ color: 'var(--text-color, #333333)' }}>Top Percentage</h3>
-                <div
-                  className={`${styles.number} ${styles.badge}`}
-                  style={{ fontSize: "2rem", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {contestData?.contestTopPercentage || 0}%
+
+              <div style={{textAlign:'center'}}>
+                <h3>Top Percentage</h3>
+                <div className={`${styles.number} ${styles.badge}`} style={{fontSize:"2rem"}}>
+                  {contestData?.contestTopPercentage}%
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
-        {/* Second Row: Badges Earned */}
+        {/* Row 2 - Badges */}
         <div className={styles.stats}>
           <div className={styles.statCard}>
-            <a href="https://leetcode.com/u/rounak_100/" target="_blank" rel="noopener noreferrer">
+            <a href="https://leetcode.com/u/rounak_100/" target="_blank">
               <h2>Badges Earned</h2>
             </a>
-            <div className={styles.badgesContainer}>
-              {badgesData.length > 0 ? (
-                badgesData.map((badge, index) => {
-                  // Replace the icon URL for the specific badge
-                  const badgeIcon = badge.displayName === "Oct LeetCoding Challenge"
-                    ? "/oct.png" // Replace with a working URL
-                    : badge.icon;
 
-                  return (
-                    <div key={index} className={styles.badge}>
-                      <img
-                        src={badgeIcon}
-                        alt={badge.displayName}
-                        className={styles.badgeIcon}
-                        onError={(e) => {
-                          e.target.src = "/oct.png"; // Fallback image
-                        }}
-                      />
-                      <p>{badge.displayName}</p>
-                    </div>
-                  );
-                })
-              ) : (
-                <p>No badges earned yet.</p>
-              )}
+            <div className={styles.badgesContainer}>
+              {badgesData.length > 0 ? badgesData.map((badge, i) => {
+                const badgeIcon = badge.displayName === "Oct LeetCoding Challenge" ? "/oct.png" : badge.icon;
+                return (
+                  <div key={i} className={styles.badge}>
+                    <img src={badgeIcon} alt={badge.displayName}
+                      className={styles.badgeIcon}
+                      onError={(e) => (e.target.src = "/oct.png")}
+                    />
+                    <p>{badge.displayName}</p>
+                  </div>
+                );
+              }) : <p>No badges earned yet.</p>}
             </div>
           </div>
         </div>
@@ -205,3 +227,12 @@ export function LeetCode() {
     </section>
   );
 }
+
+/* Keyframes for Skeleton Animation */
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}`;
+document.head.appendChild(style);

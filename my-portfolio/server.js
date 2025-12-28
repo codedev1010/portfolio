@@ -1,67 +1,63 @@
-import express from 'express';
-import cors from 'cors';
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
-const app = express();
-app.use(cors());
+const LEETCODE_API_ENDPOINT = "https://alfa-leetcode-api.onrender.com";
 
-// Base URL for the new API
-const LEETCODE_API_ENDPOINT = "https://my-leetcode-api.vercel.app";
+// fetch with a timeout limit (prevents Vercel timeout)
+async function timedFetch(url, timeout = 8000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeout);
 
-// Fetch solved questions, contest rating, and badges from the new API
+  try {
+    const res = await fetch(url, { signal: controller.signal });
+    return res;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// Fetch LC details in parallel (not sequential like before)
 async function fetchLeetCodeData(username) {
   try {
-    // Fetch solved questions
-    const solvedResponse = await fetch(`${LEETCODE_API_ENDPOINT}/${username}/solved`);
-    if (!solvedResponse.ok) {
-      throw new Error(`Failed to fetch solved questions: ${solvedResponse.status}`);
-    }
-    const solvedData = await solvedResponse.json();
+    const urls = [
+      `${LEETCODE_API_ENDPOINT}/${username}/solved`,
+      `${LEETCODE_API_ENDPOINT}/${username}/contest`,
+      `${LEETCODE_API_ENDPOINT}/${username}/badges`
+    ];
 
-    // Fetch contest rating
-    const contestResponse = await fetch(`${LEETCODE_API_ENDPOINT}/${username}/contest`);
-    if (!contestResponse.ok) {
-      throw new Error(`Failed to fetch contest rating: ${contestResponse.status}`);
-    }
-    const contestData = await contestResponse.json();
+    const [solvedRes, contestRes, badgesRes] = await Promise.all(
+      urls.map(url => timedFetch(url))
+    );
 
-    // Fetch badges earned
-    const badgesResponse = await fetch(`${LEETCODE_API_ENDPOINT}/${username}/badges`);
-    if (!badgesResponse.ok) {
-      throw new Error(`Failed to fetch badges: ${badgesResponse.status}`);
+    if (!solvedRes.ok || !contestRes.ok || !badgesRes.ok) {
+      throw new Error("Failed to fetch one of the endpoints");
     }
-    const badgesData = await badgesResponse.json();
 
-    // Combine the data into a single response
-    return {
-      solved: solvedData,
-      contest: contestData,
-      badges: badgesData,
-    };
+    const [solved, contest, badges] = await Promise.all([
+      solvedRes.json(),
+      contestRes.json(),
+      badgesRes.json()
+    ]);
+
+    return { solved, contest, badges };
   } catch (error) {
-    console.error("Error fetching data from LeetCode API:", error);
+    console.error("LeetCode API error:", error);
     throw error;
   }
 }
 
-// Route for profile data
-app.get("/api/leetcode/:username", async (req, res) => {
-  try {
-    const { username } = req.params;
-    console.log(`Fetching profile for username: ${username}`);
+// Vercel API handler (replaces Express)
+export default async function handler(req, res) {
+  const username = req.query.username;
 
-    // Fetch data from the new API
+  if (!username)
+    return res.status(400).json({ error: "Username required" });
+
+  try {
+    console.log(`Fetching data for: ${username}`);
     const data = await fetchLeetCodeData(username);
 
-    // Send the combined data as the response
-    res.json(data);
-  } catch (error) {
-    console.error("Profile fetch error:", error);
-    res.status(500).json({ error: "Failed to fetch LeetCode profile" });
+    return res.status(200).json(data);
+  } catch {
+    return res.status(500).json({ error: "Failed to fetch profile" });
   }
-});
-
-// Export the express app as a Vercel serverless function
-export default (req, res) => {
-  app(req, res); // Handle the incoming request using express
-};
+}
